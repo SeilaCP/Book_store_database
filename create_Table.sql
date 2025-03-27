@@ -2,28 +2,27 @@ create database BOOK_SHOP;
 use BOOK_SHOP;
 
 CREATE TABLE Customer (
-    CustomerID INT PRIMARY KEY,
-    Name VARCHAR(255),
-    Email VARCHAR(255) UNIQUE,
-    Password VARCHAR(255),
-    PhoneNumber VARCHAR(20),
-    Admin BOOLEAN
+    CustomerID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    PhoneNumber VARCHAR(20) UNIQUE NOT NULL
 );
 
-CREATE TABLE Address (
+CREATE TABLE Address_Customer (
     AddressID INT PRIMARY KEY,
-    CustomerID INT,
+    CustomerID INT NOT NULL,
     Street VARCHAR(255),
-    City VARCHAR(100),
-    State VARCHAR(100),
+    City VARCHAR(100) NOT NULL,
+    State VARCHAR(100) NOT NULL,
     ZipCode VARCHAR(20),
-    Country VARCHAR(100),
+    Country VARCHAR(100) NOT NULL,
     AddressType VARCHAR(50),
     FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID)
 );
 
 CREATE TABLE OrderTable (
-    OrderID INT PRIMARY KEY,
+    OrderID INT PRIMARY KEY  AUTO_INCREMENT,
     CustomerID INT,
     OrderDate DATE,
     TotalAmount DECIMAL(10,2),
